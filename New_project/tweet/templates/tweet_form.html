@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if form.instance.pk %}Edit Tweet{% else %}Create Tweet{% endif %}</title>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Edit Tweet{% else %}Create Tweet{% endif %}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">
+            {% if form.instance.pk %}
+                Save Changes
+            {% else %}
+                Create
+            {% endif %}
+        </button>
+        <a href="{% url 'list_tweet' %}">Cancel</a>
+    </form>
+</body>
+</html>

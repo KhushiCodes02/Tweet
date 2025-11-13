@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Tweets</title>
+</head>
+<body>
+    <h1>Tweets</h1>
+    <a href="{% url 'create_tweet' %}">Create New Tweet</a>
+    <ul>
+        {% for tweet in tweets %}
+            <li>
+                <strong>{{ tweet.user.username }}</strong>:
+                {{ tweet.tweet }}
+                <br>
+                <em>Posted at {{ tweet.created_at }}</em>
+                {% if tweet.photo %}
+                    <br>
+                    <img src="{{ tweet.photo.url }}" alt="Tweet Photo" height="100">
+                {% endif %}
+                <br>
+                <a href="{% url 'edit_tweet' tweet.id %}">Edit</a> |
+                <a href="{% url 'delete_tweet' tweet.id %}">Delete</a>
+            </li>
+        {% empty %}
+            <li>No tweets yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

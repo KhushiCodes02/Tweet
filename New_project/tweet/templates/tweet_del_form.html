@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Tweet</title>
+</head>
+<body>
+    <h1>Delete Tweet</h1>
+    <p>Are you sure you want to delete this tweet?</p>
+    <blockquote>
+        <strong>{{ tweet.user.username }}</strong>: {{ tweet.tweet }}
+        <br>
+        <em>Posted at {{ tweet.created_at }}</em>
+        {% if tweet.photo %}
+            <br>
+            <img src="{{ tweet.photo.url }}" alt="Tweet Photo" height="100">
+        {% endif %}
+    </blockquote>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+        <a href="{% url 'list_tweet' %}">Cancel</a>
+    </form>
+</body>
+</html>
